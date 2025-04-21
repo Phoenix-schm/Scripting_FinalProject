@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] GameObject playerCamera;
+
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float cameraSpeed = 10f;
-
-    [SerializeField] GameObject playerCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
         float mouseXInput = Input.GetAxis("Mouse Y") * cameraSpeed;
         float mouseYInput = Input.GetAxis("Mouse X") * cameraSpeed;
 
-        playerCamera.transform.Rotate(-mouseXInput, 0, 0);  // camera rotation, only rotates up/down as player rotation of left/right is used
-        transform.Rotate(0, mouseYInput, 0);                // player rotation, only rotates left/right as up/down owuld be weird for movement
-        transform.Translate(horizontalInput, 0, verticalInput);                 // player movement forwards/backwards/left/right
+        playerCamera.transform.Rotate(-mouseXInput, 0, 0);          // camera rotation, only rotates up/down as player rotation of left/right is used
+        transform.Rotate(0, mouseYInput, 0);                        // player rotation, only rotates left/right as up/down would be weird for movement
+        transform.Translate(horizontalInput, 0, verticalInput);     // player movement forwards/backwards/left/right
     }
 }
