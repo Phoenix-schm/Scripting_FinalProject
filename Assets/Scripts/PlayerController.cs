@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] GameObject playerCamera;
+    [SerializeField] public Camera playerCamera;
 
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float cameraSpeed = 10f;

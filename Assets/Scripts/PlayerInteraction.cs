@@ -2,24 +2,31 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] int rayDistance = 10;
+    private Camera playerCamera;
 
-    LayerMask mask;
+    [SerializeField] private float rayDistance = 3f;
+    [SerializeField] private LayerMask mask;
 
     void Start()
     {
-        mask = LayerMask.GetMask("Interactable Object");
+        playerCamera = GetComponent<PlayerController>().playerCamera;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //RaycastHit hit;
-        Vector3 forward = transform.TransformDirection(transform.forward);
+        Ray cameraRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);   // Creates ray from middle of camera, shoots forwards
 
-        if (Physics.Raycast(transform.position, forward, rayDistance, mask))
+        Debug.DrawRay(cameraRay.origin, cameraRay.direction * rayDistance);
+
+        RaycastHit hitInfo;     // Stores hit information
+        if (Physics.Raycast(cameraRay, out hitInfo, rayDistance, mask))
         {
-            Debug.Log("You've hit an interactable object");
+            if (hitInfo.collider.GetComponent<Interactable>() != null)      // if you've hit an interactable object
+            {
+                Debug.Log(hitInfo.collider.GetComponent<Interactable>().objectPrompt);
+                Debug.Log("You've hit an interactable object");
+            }
         }
         else
         {
