@@ -7,10 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float cameraSpeed = 10f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
