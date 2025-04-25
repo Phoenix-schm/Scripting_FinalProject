@@ -2,27 +2,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] public Camera playerCamera;
+    public Camera playerCamera;
 
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float cameraSpeed = 10f;
 
-    void Awake()
-    {
+    private float pitch;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        float verticalInput = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
-        float mouseXInput = Input.GetAxis("Mouse Y") * cameraSpeed;
-        float mouseYInput = Input.GetAxis("Mouse X") * cameraSpeed;
+        float mouseY = Input.GetAxis("Mouse Y") * cameraSpeed;
+        float mouseX = Input.GetAxis("Mouse X") * cameraSpeed;
+        pitch -= mouseY;
+        pitch = Mathf.Clamp(pitch, -30f, 60f);
 
-        playerCamera.transform.Rotate(-mouseXInput, 0, 0);          // camera rotation, only rotates up/down as player rotation of left/right is used
-        transform.Rotate(0, mouseYInput, 0);                        // player rotation, only rotates left/right as up/down would be weird for movement
-        transform.Translate(horizontalInput, 0, verticalInput);     // player movement forwards/backwards/left/right
+        playerCamera.transform.localRotation = Quaternion.Euler(pitch, 0, 0);   // camera rotation, only rotates up/down as player rotation right/left is used
+        transform.Rotate(0, mouseX, 0);                                         // player rotation, only rotates left/right as up/down would be weird for movement
+
+        if (moveDirection.magnitude > 0)
+        {
+            transform.Translate(moveDirection * movementSpeed * Time.deltaTime);          // player movement forwards/backwards/left/right
+        }
     }
 }

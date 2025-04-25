@@ -4,44 +4,43 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private Camera playerCamera;
-
-    [SerializeField] private TextMeshProUGUI interactionText;
+    [Header("Generic Attributes")]
     [SerializeField] private float rayDistance = 3f;
     [SerializeField] private LayerMask mask;
 
+    [Header("UI Attributes")]
+    [Tooltip("Text that shows up when hovering over an intereactable object")]
+    [SerializeField] private Text interactionText;
+
+    private Camera playerCamera;
     void Start()
     {
         playerCamera = GetComponent<PlayerController>().playerCamera;
-
-        interactionText.text = "";
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        Ray cameraRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);   // Creates ray from middle of camera, shoots forwards
+        interactionText.enabled = false;
 
+        Ray cameraRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);   // Creates ray from middle of camera, shoots forwards
         Debug.DrawRay(cameraRay.origin, cameraRay.direction * rayDistance);
 
-        RaycastHit hitInfo;     // Stores hit information
-        if (Physics.Raycast(cameraRay, out hitInfo, rayDistance, mask))
+        if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, rayDistance, mask))                  // if the ray hits an object that the mask allows. Currently "Default"
         {
-            if (hitInfo.collider.GetComponent<Interactable>() != null)      // if you've hit an interactable object
+            if (hitInfo.collider.TryGetComponent<Interactable>(out Interactable interactObject))    // if you've hit an interactable object
             {
-                Debug.Log(hitInfo.collider.GetComponent<Interactable>().objectPrompt);
-                
-                interactionText.text = hitInfo.collider.GetComponent<Interactable>().objectPrompt;
-            }
-            else
-            {
-                interactionText.text = "";
+                interactionText.text = interactObject.objectPrompt;
+                interactionText.enabled = true;
+                PlayerInteract(interactObject);
             }
         }
-        else
+    }
+
+    private void PlayerInteract(Interactable interactObject)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("You're not looking at anything");
-            interactionText.text = "";
+            interactObject.BaseInteract();
         }
     }
 }
