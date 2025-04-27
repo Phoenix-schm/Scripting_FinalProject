@@ -17,8 +17,8 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
         Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
         float mouseY = Input.GetAxis("Mouse Y") * cameraSpeed;

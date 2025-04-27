@@ -1,7 +1,6 @@
-using System.Runtime.InteropServices;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -22,15 +21,21 @@ public class PlayerInteraction : MonoBehaviour
     private KeyCode interactButton = KeyCode.E;
     private KeyCode attack = KeyCode.Mouse0;
     private KeyCode pickUpButton = KeyCode.Mouse0;
+    private KeyCode openInventory = KeyCode.Tab;
     private char interactChar = 'E';
     private string pickUpString = "Left Mouse Button";
 
-    void Start()
+    void Awake()
     {
         playerCamera = GetComponent<PlayerMovementController>().playerCamera;
+
+        // Reset PlayerVariables on restart
+        playerVariables.inventory = new List<PickUpItemData>();
+        playerVariables.itemData = new Dictionary<PickUpItemData, int>();
+        playerVariables.health = playerVariables.maxHealth;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         interactionText.enabled = false;
 
@@ -45,30 +50,52 @@ public class PlayerInteraction : MonoBehaviour
             {
                 PlayerInteract(interactObject, hitObject);
             }
-            else if (hitObject.TryGetComponent(out IPickUpable pickupObject))
+            if (hitObject.TryGetComponent(out IPickUpable pickupObject))   // if you've hit an object that can be picked up
             {
-                PlayerPickUp(pickupObject, hitObject);
+                hitObject.TryGetComponent<PickUpItem>(out PickUpItem item);
+                PlayerPickUp(item);
             }
+        }
+
+        if (Input.GetKeyDown(openInventory))
+        {
+            // open menu, pause movement but not world
+            // get mouse clicks
+            // if clicked on inventory item, show item stats
+            // able to drop item
+
+            //close menu on tab again
         }
     }
 
-    private void PlayerInteract(IInteractable interactScript, GameObject interactObject)
+    /// <summary>
+    /// Logic for player interacting with an object.
+    /// Should be used with objects in the overworld that cannot be picked up in player inventory
+    /// </summary>
+    /// <param name="interactInterface">The interface being called</param>
+    /// <param name="interactObject">The object being interacted with</param>
+    private void PlayerInteract(IInteractable interactInterface, GameObject interactObject)
     {
         interactionText.enabled = true;
         interactionText.text = "Press " + interactChar + " to interact with " + interactObject.name;
         if (Input.GetKeyDown(interactButton))
         {
-            interactScript.Interact(this);
+            interactInterface.Interact(this);
         }
     }
 
-    private void PlayerPickUp(IPickUpable pickUpScript, GameObject pickUpObject)
+    /// <summary>
+    /// Logic for player picking up an object
+    /// Should be used with objects that can be picked up and added to player inventory.
+    /// </summary>
+    /// <param name="pickUpObject">Object being picked up</param>
+    private void PlayerPickUp(PickUpItem pickUpObject)
     {
         interactionText.enabled = true;
-        interactionText.text = "Press " + pickUpString + " to interact with " + pickUpObject.name;
+        interactionText.text = "Press " + pickUpString + " to pickup " + pickUpObject.pickUpData.displayName;
         if (Input.GetKeyDown(pickUpButton))
         {
-            pickUpScript.PickUpItem(this);
+            pickUpObject.PickUp(playerVariables);
         }
     }
 }

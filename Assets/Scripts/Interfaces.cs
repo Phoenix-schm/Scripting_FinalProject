@@ -7,5 +7,10 @@ public interface IInteractable
 
 public interface IPickUpable
 {
-    public void PickUpItem(PlayerInteraction player);
+    public void PickUp(PlayerVariables player);
+}
+
+public interface IRemovable
+{
+    public void RemoveItem(PlayerVariables player);
 }
