@@ -1074,8 +1074,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97e327ede7222743a02aaedba18bdeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrompt: Press E to interact with the cube
-  objectName: Cube
 --- !u!1 &2049194691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2363,10 @@ PrefabInstance:
       propertyPath: interactionText
       value: 
       objectReference: {fileID: 1845957946}
+    - target: {fileID: 3197095384313801789, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
+      propertyPath: playerVariables
+      value: 
+      objectReference: {fileID: 11400000, guid: d169413900237ce4db5a5ccda714b1b2, type: 2}
     - target: {fileID: 3197095384313801789, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
       propertyPath: interactionCanvas
       value: 
