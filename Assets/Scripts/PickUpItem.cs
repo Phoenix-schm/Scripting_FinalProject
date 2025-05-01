@@ -1,37 +1,72 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PickUpItem : MonoBehaviour, IPickUpable, IRemovable
 {
     public PickUpItemData pickUpData;
+    public int amountInStack;
 
-    public void PickUp(PlayerVariables player)
+    public PickUpItem(PickUpItemData sourceData)
     {
-        PickUpItemData item = pickUpData;
-        player.inventory.Add(item);
+        pickUpData = sourceData;
+    }
 
-        if (!player.itemData.ContainsKey(item))
+    /// <summary>
+    /// Pick up an item and add it's data to the player inventory
+    /// </summary>
+    /// <param name="player">The player being effected</param>
+    public void PickUp(PlayerInteraction player)
+    {
+        PlayerVariables playerVariables = player.playerVariables;
+        PickUpItemData itemData = pickUpData;
+
+        if (!playerVariables.inventory.Contains(itemData))           // if player doesn't have the pick up yet
         {
-            player.itemData.Add(item, 0);
+            playerVariables.inventory.Add(itemData);
+            playerVariables.inventoryDictionary.Add(itemData, itemData.prefab);
+
+            int index = playerVariables.inventory.IndexOf(itemData);
+            playerVariables.inventory[index].amountInInventory = amountInStack;
         }
         else
         {
-            player.itemData[item] += 1;
+            int index = playerVariables.inventory.IndexOf(itemData);
+            playerVariables.inventory[index].amountInInventory += amountInStack;
         }
 
-        //playerVariables.LookAtInventory();
         Destroy(gameObject);
     }
 
-    public void RemoveItem(PlayerVariables player)
+    /// <summary>
+    /// Remove a whole item from the player inventory
+    /// </summary>
+    /// <param name="player">The player being effected</param>
+    public void RemoveItem(PlayerVariables player, PickUpItemData removeItemData)
     {
-        if (player.inventory.Contains(pickUpData))
+        if (player.inventoryDictionary.TryGetValue(removeItemData, out GameObject removeItem))      // for use later on to drop object
         {
-            player.itemData[pickUpData] -= 1;
+            int index = player.inventory.IndexOf(removeItemData);
+            player.inventory.Remove(removeItemData);
+            player.inventoryDictionary.Remove(removeItemData);
+        }
+    }
 
-            if (player.itemData[pickUpData] <= 0)
+    /// <summary>
+    /// Remove an item, one by one, from player inventory
+    /// </summary>
+    /// <param name="player"></param>
+    public void RemoveOneItemFromStack(PlayerVariables player, PickUpItemData removeItemData)
+    {
+        if (player.inventoryDictionary.TryGetValue(removeItemData, out GameObject removeItem))
+        {
+            int index = player.inventory.IndexOf(removeItemData);
+            player.inventory[index].amountInInventory--;
+
+            if (player.inventory[index].amountInInventory <= 0)
             {
-                player.inventory.Remove(pickUpData);
+                player.inventory.Remove(removeItemData);
+                player.inventoryDictionary.Remove(removeItemData);
             }
         }
     }

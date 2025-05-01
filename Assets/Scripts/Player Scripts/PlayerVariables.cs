@@ -11,20 +11,12 @@ public class PlayerVariables : ScriptableObject
 
     [Header("Player Inventory")]
     public List<PickUpItemData> inventory;
-    public Dictionary<PickUpItemData, int> itemData;
+    public Dictionary<PickUpItemData, GameObject> inventoryDictionary;
 
-    public void LookAtInventory()
+    public static void HealthUpdate(PickUpItem healthItem)
     {
-        foreach (PickUpItemData item in inventory)
+        if (healthItem != null)
         {
-            Debug.Log(item.displayName);
-        }
-    }
-    public void RemoveFromItemStack(PickUpItemData item)
-    {
-        if (inventory.Contains(item))
-        {
-            itemData[item] -= 1;
         }
     }
 }
