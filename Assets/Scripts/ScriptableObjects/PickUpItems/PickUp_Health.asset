@@ -16,5 +16,6 @@ MonoBehaviour:
   displayName: Health
   icon: {fileID: 21300000, guid: d6cba8b56d9fb1045ab165cd0692b35d, type: 3}
   prefab: {fileID: 3295114667254940127, guid: ba26257ba844e4848908e077507f0ec0, type: 3}
-  iconGridWidth: 1
-  iconGridHeight: 1
+  range: {x: 5, y: 4}
+  type: 0
+  stackable: 1

@@ -9,10 +9,6 @@ public class PlayerVariables : ScriptableObject
     public int health;
     public int speed;
 
-    [Header("Player Inventory")]
-    public List<PickUpItemData> inventory;
-    public Dictionary<PickUpItemData, GameObject> inventoryDictionary;
-
     public static void HealthUpdate(PickUpItem healthItem)
     {
         if (healthItem != null)

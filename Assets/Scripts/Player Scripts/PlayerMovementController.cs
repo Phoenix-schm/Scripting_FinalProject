@@ -17,10 +17,12 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Get key presses for movement
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
         Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
+        // Get mouse movement for camera movement
         float mouseY = Input.GetAxis("Mouse Y") * cameraSpeed;
         float mouseX = Input.GetAxis("Mouse X") * cameraSpeed;
         pitch -= mouseY;

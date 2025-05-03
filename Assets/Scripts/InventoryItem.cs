@@ -1,11 +1,33 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// All logic pertaining to moving items in the inventory.
+/// </summary>
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [HideInInspector] public PickUpItemData itemData;
     [HideInInspector] public Image image;
     [HideInInspector] public Transform parentAfterDrag;
+    [HideInInspector] public int amount = 1;
+    [HideInInspector] public int maxAmount = 8;
+
+    public TextMeshProUGUI amountText;
+    public void InitializeItem(PickUpItemData newItem)
+    {
+        itemData = newItem;
+        image.sprite = newItem.icon;
+        RefreshCount();
+    }
+
+    public void RefreshCount()
+    {
+        amountText.text = amount.ToString();
+        bool textActive = amount > 1;
+        amountText.gameObject.SetActive(textActive);
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         image = GetComponent<Image>();
