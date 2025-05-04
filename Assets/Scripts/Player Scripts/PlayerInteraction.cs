@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using UnityEngine.EventSystems;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("Player Variables")]
     public PlayerVariables playerVariables;
-    
+    public Transform spawnInFrontOfPlayer;
 
     private Camera _playerCamera;
 
@@ -63,7 +64,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(_openInventory))
         {            
-            if (!playerInventory.activeSelf)                                // if inventory isn't active
+            if (!playerInventory.activeSelf && !_isOtherMenusActive)        // if inventory isn't active
             {
                 Debug.Log("You've opened you're inventory");
                 playerInventory.SetActive(true);

@@ -9,16 +9,16 @@ using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [HideInInspector] public PickUpItemData itemData;
-    [HideInInspector] public Image image;
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public int amount = 1;
     [HideInInspector] public int maxAmount = 8;
 
+    public Image itemImage;
     public TextMeshProUGUI amountText;
     public void InitializeItem(PickUpItemData newItem)
     {
         itemData = newItem;
-        image.sprite = newItem.icon;
+        itemImage.sprite = newItem.icon;
         RefreshCount();
     }
 
@@ -28,14 +28,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         bool textActive = amount > 1;
         amountText.gameObject.SetActive(textActive);
     }
+
+#region Inputs
     public void OnBeginDrag(PointerEventData eventData)
     {
-        image = GetComponent<Image>();
+        itemImage = GetComponent<Image>();
         Debug.Log("Begin dragging");
         parentAfterDrag = transform.parent;                 // Takes the transform of where it started
         transform.SetParent(parentAfterDrag.parent.parent); // Sets parent as the Inventory menu, the canvas (decouples from the original item slot)
         transform.SetAsLastSibling();                       // Allows item to be ontop of everything in the inventory
-        image.raycastTarget = false;                        // Ignore the inventoryItem image when while being dragged, can now be placed to the image below it
+        itemImage.raycastTarget = false;                        // Ignore the inventoryItem image when while being dragged, can now be placed to the image below it
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -48,6 +50,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         Debug.Log("Stop dragging");
         transform.SetParent(parentAfterDrag);               // Sets as original parent
-        image.raycastTarget = true;                         // Can now be picked back up
+        itemImage.raycastTarget = true;                         // Can now be picked back up
     }
+    #endregion
 }

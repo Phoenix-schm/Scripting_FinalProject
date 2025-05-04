@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventoryManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerInventoryManager : MonoBehaviour
                 if (itemInSlot == null)                                 // The slot is empty
                 {
                     SpawnItemInSlot(item, slot);
+
                     hasBeenPlaced = true;
                     break;
                 }
@@ -46,17 +48,14 @@ public class PlayerInventoryManager : MonoBehaviour
         }
         return isAlreadyInInventory;
     }
-    public void RemoveItem(PickUpItemData item)
-    {
-        
-    }
 
     private void SpawnItemInSlot(PickUpItemData item, InventorySlot slot)
     {
         GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
-        InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
-
-        inventoryItem.InitializeItem(item);
+        if (newItem.TryGetComponent<InventoryItem>(out InventoryItem inventoryItem))
+        {
+            inventoryItem.InitializeItem(item);
+        }
     }
 
 }

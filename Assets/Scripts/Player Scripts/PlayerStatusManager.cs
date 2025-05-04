@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class PlayerUIStatus : MonoBehaviour
+public class PlayerStatusManager : MonoBehaviour
 {
     [SerializeField] private PlayerVariables playerVariables;
     [SerializeField] private TextMeshProUGUI healthText;
