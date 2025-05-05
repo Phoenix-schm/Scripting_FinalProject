@@ -7,7 +7,6 @@ public class InventorySubMenu : MonoBehaviour
     public PlayerInteraction playerInteraction;
 
     [HideInInspector] public PickUpItemData pickUpItemData;
-    //[HideInInspector] public PickUpItem pickUpItemScript;
     [HideInInspector] public GameObject selectedItem;
 
     /// <summary>
@@ -46,11 +45,14 @@ public class InventorySubMenu : MonoBehaviour
 
     public void UseItem()
     {
+        bool isItemUsed = false;
         if (pickUpItemData.type == PickUpTypes.Health)
         {
             if (pickUpItemData.prefab.TryGetComponent<HealthPickUp>(out HealthPickUp healthPickUp))     // If it's a valid health item
             {
-                healthPickUp.HealPlayer(playerInteraction);
+                isItemUsed = healthPickUp.HealPlayer(playerInteraction);
+                PlayerStatusUI statusUI = playerInteraction.playerStatusUI.GetComponent<PlayerStatusUI>();
+                statusUI.UpdatePlayerHealthText(playerInteraction.playerVariables.health);
             }
             else
             {
@@ -65,8 +67,15 @@ public class InventorySubMenu : MonoBehaviour
         {
             // heal player
         }
-        // use the item
-        RemoveItem();
+
+        if (isItemUsed)
+        {
+            RemoveItem();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public static bool IsBeingDestroy(bool isDestroyed)

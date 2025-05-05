@@ -1,7 +1,4 @@
-using System;
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "PickUpItem", menuName = "Scriptable Objects/PickUp Item Data")]
 public class PickUpItemData : ScriptableObject

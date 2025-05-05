@@ -2,24 +2,23 @@ using UnityEngine;
 
 public class HealthPickUp : PickUpItem
 {
-    public int healAmount;
+    [SerializeField] private int healAmount;
 
-    public void HealPlayer(PlayerInteraction player)
+    public bool HealPlayer(PlayerInteraction player)
     {
+        bool isItemUsed = false;
         PlayerVariables playerVariables = player.playerVariables;
-
         if (playerVariables.health < playerVariables.maxHealth)
         {
             playerVariables.health += healAmount;
+            isItemUsed = true;
 
             if (playerVariables.health > playerVariables.maxHealth)
             {
                 playerVariables.health = playerVariables.maxHealth;
             }
         }
-        else if (playerVariables.health == playerVariables.maxHealth)
-        {
 
-        }
+        return isItemUsed;
     }
 }

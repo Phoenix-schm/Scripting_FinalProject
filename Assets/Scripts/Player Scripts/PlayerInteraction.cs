@@ -1,8 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System;
-using UnityEngine.EventSystems;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -15,7 +12,8 @@ public class PlayerInteraction : MonoBehaviour
     public Text interactionText;
     public GameObject playerInventory;
     public GameObject inventoryManager;
-    private bool _isOtherMenusActive;
+    public GameObject playerStatusUI;
+    private bool _isOtherMenusActive;       // for referencing if other menus are active
 
     [Header("Player Variables")]
     public PlayerVariables playerVariables;
