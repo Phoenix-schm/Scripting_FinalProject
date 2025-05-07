@@ -21,6 +21,9 @@ public class EntityPath : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Unrelated to gameplay. Draws a line between waypoints[] in editor and numbers them
+    /// </summary>
     public void DrawPath()
     {
         for (int i = 0; i < waypoints.Count; i++)

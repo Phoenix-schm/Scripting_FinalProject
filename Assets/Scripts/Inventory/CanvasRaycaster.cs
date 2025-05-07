@@ -38,7 +38,7 @@ public class CanvasRaycaster : MonoBehaviour
 
                 foreach (RaycastResult result in results)
                 {
-                    if (result.gameObject.TryGetComponent<InventoryItem>(out inventoryItem))
+                    if (result.gameObject.TryGetComponent<InventoryItem>(out inventoryItem))    // check what it's hitting is what you want
                     {
                         subMenu.transform.position = pointerEventData.position;
                         subMenu.SetActive(true);

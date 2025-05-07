@@ -4,13 +4,17 @@ public class PatrolState : BaseState
 {
     public int waypointIndex;
     public float waitTimer;
-    int maxWait = 1;   // how long the enemy will wait 
+    private int _maxWait = 1;   // how long the enemy will wait 
     public override void Enter()
     {
     }
     public override void Perform()
     {
         PatrolCycle();
+        //if (enemy.CanSeePlayer())
+        //{
+        //    stateMachine.ChangeState(new AttackState());
+        //}
     }
     public override void Exit()
     {
@@ -24,7 +28,7 @@ public class PatrolState : BaseState
         if (enemy.Agent.remainingDistance < 0.2f)       // if enemy is within .2f of waypoint, go to next waypoint
         {
             waitTimer += Time.deltaTime;
-            if (waitTimer > maxWait)
+            if (waitTimer > _maxWait)
             {
                 if (waypointIndex < enemy.path.waypoints.Count - 1)     // run through each waypoint
                 {

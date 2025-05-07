@@ -12,9 +12,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public int amount = 1;
     [HideInInspector] public int maxAmount = 8;
-
+    
     public Image itemImage;
     public TextMeshProUGUI amountText;
+
+    #region Initialization
     public void InitializeItem(PickUpItemData newItem)
     {
         itemData = newItem;
@@ -28,8 +30,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         bool textActive = amount > 1;
         amountText.gameObject.SetActive(textActive);
     }
+    #endregion
 
-#region Inputs
+    #region Inputs
     public void OnBeginDrag(PointerEventData eventData)
     {
         itemImage = GetComponent<Image>();
