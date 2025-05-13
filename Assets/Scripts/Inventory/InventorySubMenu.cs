@@ -52,7 +52,7 @@ public class InventorySubMenu : MonoBehaviour
             {
                 isItemUsed = healthPickUp.HealPlayer(playerInteraction);
                 PlayerStatusUI statusUI = playerInteraction.playerStatusUI.GetComponent<PlayerStatusUI>();
-                statusUI.UpdatePlayerHealthText(playerInteraction.playerVariables.health);
+                statusUI.UpdatePlayerHealthText();
             }
             else
             {

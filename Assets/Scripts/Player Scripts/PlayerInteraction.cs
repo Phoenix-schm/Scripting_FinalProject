@@ -52,6 +52,7 @@ public class PlayerInteraction : MonoBehaviour
             if (hitObject.TryGetComponent(out IInteractable interactScript))    // if you've hit an interactable object
             {
                 //TODO: In the interact interface, add a display interactable text and display interactable menu func
+                // TODO: Turn Iinturactable into a class, with object name and interaction text
                 PlayerInteract(interactScript, hitObject);
             }
             if (hitObject.TryGetComponent<PickUpItem>(out PickUpItem pickUpScript))     // If you've hit something that can be picked up

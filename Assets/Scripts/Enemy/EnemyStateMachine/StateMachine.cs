@@ -3,7 +3,8 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     public BaseState activeState;
-
+    public GameObject lookingForPlayerIndicator;
+    public GameObject seePlayerIndicator;
     public void Initialize()
     {
         ChangeState(new PatrolState());
@@ -28,8 +29,8 @@ public class StateMachine : MonoBehaviour
         activeState = newState;
         if (activeState != null)                    // failsafe null check
         {
-            activeState.stateMachine = this;        // redo stateMachine to be the activeState
-            activeState.enemy = GetComponent<BaseEnemy>();
+            activeState.stateMachine = this;                // redo stateMachine to be the activeState
+            activeState.enemy = GetComponent<BaseEnemy>();  // redo enemy
             activeState.Enter();
         }
         else
