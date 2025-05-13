@@ -35,7 +35,7 @@ public class PlayerStatusUI : MonoBehaviour
         StartCoroutine("ShowHurtOverlayTimer", 2);
     }
 
-    IEnumerable ShowHurtOverlayTimer(int timer)
+    IEnumerator ShowHurtOverlayTimer(int timer)
     {
         yield return new WaitForSeconds(timer);
         hurtOverlay.SetActive(false);

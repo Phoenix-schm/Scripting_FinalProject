@@ -27,9 +27,9 @@ public class BaseEnemy : MonoBehaviour
     [HideInInspector] public int health;
 
     // attack
-    private float _hurtTimer;
-    private float _maxHurtTimer = 3f;           // The maximum amount of time before the player can be hurt again
-
+    private int _hurtTimer;
+    private WaitForSeconds hurtDelay = new WaitForSeconds(1);
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -87,10 +87,10 @@ public class BaseEnemy : MonoBehaviour
         return canSeePlayer;
     }
 
-    IEnumerable HurtCountDown()
+    IEnumerator HurtCountDown()
     {
         Debug.Log("Start hurt timer");
-        yield return new WaitForSeconds(1);
+        yield return hurtDelay;
         Debug.Log("Finish wait timer");
         _hurtTimer = 0;
     }
