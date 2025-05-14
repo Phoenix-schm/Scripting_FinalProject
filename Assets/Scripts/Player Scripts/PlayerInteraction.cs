@@ -20,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     public Transform spawnInFrontOfPlayer;
 
     private Camera _playerCamera;
+    private PlayerShoot _playerShoot;
 
     // interaction buttons
     private KeyCode _interactButton = KeyCode.E;
@@ -31,10 +32,10 @@ public class PlayerInteraction : MonoBehaviour
     void Awake()
     {
         _playerCamera = GetComponent<PlayerMovementController>().playerCamera;
-
+        _playerShoot = GetComponentInChildren<PlayerShoot>();
         // Reset PlayerVariables on restart
-        //playerVariables.health = playerVariables.maxHealth;
-        playerVariables.health = 20;
+        playerVariables.health = playerVariables.maxHealth;
+        playerVariables.points = 0;
     }
 
     void Update()
@@ -80,6 +81,10 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
+            if (!_isOtherMenusActive)
+            {
+                _playerShoot.Shoot();
+            }
             Debug.Log("You attacked");
             // attack
         }

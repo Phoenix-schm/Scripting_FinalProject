@@ -8,6 +8,7 @@ public class PlayerVariables : ScriptableObject
     public int maxHealth;
     public int health;
     public int speed;
+    public int points;
 
     public static void HealthUpdate(PickUpItem healthItem)
     {

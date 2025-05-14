@@ -16,6 +16,7 @@ MonoBehaviour:
   health: 20
   speed: 5
   damage: 5
+  pointAmount: 10
   monsterPrefab: {fileID: 5665602406334452161, guid: 7d2311003d8ae9d4aa0abb469f5cbc6b, type: 3}
   dropLoot: {fileID: 3295114667254940127, guid: ba26257ba844e4848908e077507f0ec0, type: 3}
   dropAmount: 2

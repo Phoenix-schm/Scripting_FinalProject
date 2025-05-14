@@ -9,6 +9,7 @@ public class EnemyData : ScriptableObject
 
     public int speed;
     public int damage;
+    public int pointAmount;
 
     public GameObject monsterPrefab;
     public GameObject dropLoot;

@@ -9,6 +9,8 @@ using System;
 public class BaseEnemy : MonoBehaviour
 {
     public UnityEvent onAttackPlayer;
+    public UnityEvent onEnemyDeath;
+
     private StateMachine _stateMachine;
     private NavMeshAgent _agent;
     public NavMeshAgent Agent { get => _agent; }
@@ -95,13 +97,31 @@ public class BaseEnemy : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerInteraction>(out PlayerInteraction player) && _hurtTimer == 0)
+        if (collision.gameObject.TryGetComponent<PlayerInteraction>(out PlayerInteraction playerCollide) && _hurtTimer == 0)
         {
             _hurtTimer++;
-            PlayerVariables playerVariables = player.playerVariables;
+            PlayerVariables playerVariables = playerCollide.playerVariables;
             playerVariables.health -= enemyData.damage;
             onAttackPlayer.Invoke();
             StartCoroutine("HurtCountDown");
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+        {
+            health -= bullet.damage;
+
+            if (health <= 0)
+            {
+                PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
+                PlayerVariables playerVariables = playerInteraction.playerVariables;
+                playerVariables.points += enemyData.pointAmount;
+
+                GameObject MonsterLootClone = Instantiate(enemyData.dropLoot, transform.position, transform.rotation);
+
+                onEnemyDeath.Invoke();
+            }
         }
     }
 }

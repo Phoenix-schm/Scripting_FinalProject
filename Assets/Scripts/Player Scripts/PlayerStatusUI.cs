@@ -9,12 +9,14 @@ public class PlayerStatusUI : MonoBehaviour
     [SerializeField] private PlayerVariables playerVariables;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private GameObject hurtOverlay;
+    [SerializeField] private TextMeshProUGUI pointsText;
 
     public UnityEvent onPlayerDeath;
 
     private void Start()
     {
         healthText.text += playerVariables.health;
+        pointsText.text += playerVariables.points;
     }
 
     public void UpdatePlayerHealthText()
@@ -27,6 +29,12 @@ public class PlayerStatusUI : MonoBehaviour
         {
             onPlayerDeath?.Invoke();
         }
+    }
+
+    public void UpdatePlayerPoints()
+    {
+        pointsText.text = "Points: ";
+        pointsText.text += playerVariables.points;
     }
 
     public void ShowHurtOverlay()
