@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250258196c686ac46a6078cb2479d778, type: 3}
+  m_Name: Cheese_Ingredient
+  m_EditorClassIdentifier: 
+  itemId: Cheese_Ingredient
+  displayName: Cheese
+  icon: {fileID: 21300000, guid: 845b2893dc301a545a1a29097f0258f2, type: 3}
+  prefab: {fileID: 5901148600700096243, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+  range: {x: 5, y: 4}
+  type: 2
+  stackable: 1

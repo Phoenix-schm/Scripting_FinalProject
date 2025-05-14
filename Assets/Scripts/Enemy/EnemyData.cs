@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "PickUpItem", menuName = "Scriptable Objects/Enemy Data")]
 
