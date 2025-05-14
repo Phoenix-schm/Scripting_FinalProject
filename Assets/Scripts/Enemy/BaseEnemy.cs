@@ -89,9 +89,7 @@ public class BaseEnemy : MonoBehaviour
 
     IEnumerator HurtCountDown()
     {
-        Debug.Log("Start hurt timer");
         yield return hurtDelay;
-        Debug.Log("Finish wait timer");
         _hurtTimer = 0;
     }
 

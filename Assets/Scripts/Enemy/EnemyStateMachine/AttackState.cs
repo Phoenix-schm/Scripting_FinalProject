@@ -18,12 +18,6 @@ public class AttackState : BaseState
 
             stateMachine.lookingForPlayerIndicator.SetActive(false);
             stateMachine.seePlayerIndicator.SetActive(true);
-            //_moveTimer += Time.deltaTime;
-            //if (_moveTimer > Random.Range(3, 7))
-            //{
-            //    enemy.Agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere * 5));   // enemy chooses a random position within a 5m circle
-            //    _moveTimer = 0;
-            //}
         }
         else
         {

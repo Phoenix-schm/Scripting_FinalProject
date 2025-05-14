@@ -23,7 +23,6 @@ public class PlayerInteraction : MonoBehaviour
 
     // interaction buttons
     private KeyCode _interactButton = KeyCode.E;
-    //private KeyCode attack = KeyCode.Mouse0;
     private KeyCode _pickUpButton = KeyCode.Mouse0;
     private KeyCode _openInventory = KeyCode.Tab;
     private char _interactInput = 'E';
@@ -34,7 +33,8 @@ public class PlayerInteraction : MonoBehaviour
         _playerCamera = GetComponent<PlayerMovementController>().playerCamera;
 
         // Reset PlayerVariables on restart
-        playerVariables.health = playerVariables.maxHealth;
+        //playerVariables.health = playerVariables.maxHealth;
+        playerVariables.health = 20;
     }
 
     void Update()
@@ -60,8 +60,7 @@ public class PlayerInteraction : MonoBehaviour
                 PlayerPickUp(pickUpScript);
             }
         }
-
-        if (Input.GetKeyDown(_openInventory))
+        else if (Input.GetKeyDown(_openInventory))
         {            
             if (!playerInventory.activeSelf && !_isOtherMenusActive)        // if inventory isn't active
             {
@@ -78,6 +77,11 @@ public class PlayerInteraction : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("You attacked");
+            // attack
         }
     }
 
