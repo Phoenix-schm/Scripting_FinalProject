@@ -1,16 +1,17 @@
+using TMPro;
 using UnityEngine;
 
 public class PizzaOvenSlot : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public PizzaResultData pizzaSlotResult;
 
-    // Update is called once per frame
-    void Update()
+    public TextMeshProUGUI pizzaName;
+    public TextMeshProUGUI pizzaRecipe;
+
+    public void Initialize(PizzaResultData pizzaResult)
     {
-        
+        pizzaSlotResult = pizzaResult;
+        pizzaName.text = pizzaResult.displayName;
+        pizzaRecipe.text = pizzaResult.recipe;
     }
 }

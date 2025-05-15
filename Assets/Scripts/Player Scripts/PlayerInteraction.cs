@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject inventoryManager;
     public GameObject playerStatusUI;
     private bool _isOtherMenusActive;       // for referencing if other menus are active
+    private bool _otherMenu;
 
     [Header("Player Variables")]
     public PlayerVariables playerVariables;
@@ -26,7 +27,7 @@ public class PlayerInteraction : MonoBehaviour
     private KeyCode _interactButton = KeyCode.E;
     private KeyCode _pickUpButton = KeyCode.Mouse0;
     private KeyCode _openInventory = KeyCode.Tab;
-    private char _interactInput = 'E';
+    //private char _interactInput = 'E';
     private string _pickUpInput = "Left Mouse Button";
 
     void Awake()
@@ -41,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         interactionText.enabled = false;
-        _isOtherMenusActive = playerInventory.activeSelf;
+        _isOtherMenusActive = playerInventory.activeSelf || _otherMenu;
 
         Ray cameraRay = new Ray(_playerCamera.transform.position, _playerCamera.transform.forward);   // Creates ray from middle of camera, shoots forwards
         Debug.DrawRay(cameraRay.origin, cameraRay.direction * rayDistance);
@@ -49,13 +50,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, rayDistance, mask) && !_isOtherMenusActive)   // if the ray hits an object that the mask allows. Currently "Default"
         {                                                                                                    //    and no menus are active
             GameObject hitObject = hitInfo.collider.gameObject;
-
-            if (hitObject.TryGetComponent(out IInteractable interactScript))    // if you've hit an interactable object
+            if (hitObject.TryGetComponent<Interactable>(out Interactable interactableObject))   // if you've hit something that can be interacted with
             {
-                //TODO: In the interact interface, add a display interactable text and display interactable menu func
-                // TODO: Turn Iinturactable into a class, with object name and interaction text
-                PlayerInteract(interactScript, hitObject);
+                PlayerInteract(interactableObject);
             }
+
             if (hitObject.TryGetComponent<PickUpItem>(out PickUpItem pickUpScript))     // If you've hit something that can be picked up
             {
                 PlayerPickUp(pickUpScript);
@@ -86,26 +85,17 @@ public class PlayerInteraction : MonoBehaviour
                 _playerShoot.Shoot();
             }
             Debug.Log("You attacked");
-            // attack
         }
     }
-
-    /// <summary>
-    /// Logic for player interacting with an object.
-    /// Should be used with objects in the overworld that cannot be picked up in player inventory
-    /// </summary>
-    /// <param name="interactScript">The script found on the interactable object</param>
-    /// <param name="interactObject">The object being interacted with</param>
-    private void PlayerInteract(IInteractable interactScript, GameObject interactObject)
+    private void PlayerInteract(Interactable interactableObject)
     {
         interactionText.enabled = true;
-        interactionText.text = "Press " + _interactInput + " to interact with " + interactObject.name;
+        interactionText.text = "Press " + _interactButton + " to open the " + interactableObject.displayName;
         if (Input.GetKeyDown(_interactButton))
         {
-            interactScript.Interact(this);
+            interactableObject.Interact(this);
         }
     }
-
     /// <summary>
     /// Logic for player picking up an object
     /// Should be used with objects that can be picked up and added to player inventory.

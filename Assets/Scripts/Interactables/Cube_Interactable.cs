@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class Cube_Interactable : MonoBehaviour, IInteractable
+public class Cube_Interactable : Interactable
 {
-    private bool openCube;
-
-    public void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction player)
     {
         Debug.Log("You've interacted with a cube");
-        openCube = !openCube;
+        isOpen = !isOpen;
     }
 }

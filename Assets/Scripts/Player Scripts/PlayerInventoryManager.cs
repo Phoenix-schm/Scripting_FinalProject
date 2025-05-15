@@ -32,6 +32,7 @@ public class PlayerInventoryManager : MonoBehaviour
         return hasBeenPlaced;
     }
 
+
     /// <summary>
     /// Checks to see if the item already exists in the player inventory
     /// </summary>
@@ -44,7 +45,7 @@ public class PlayerInventoryManager : MonoBehaviour
         {
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             // if the item is already in the inventory, and has not reached the stack limit
-            if (itemInSlot != null && itemInSlot.itemData == item && itemInSlot.amount < itemInSlot.maxAmount)
+            if (itemInSlot != null && itemInSlot.itemData == item && itemInSlot.amount < itemInSlot.maxAmount && item.stackable == true)
             {
                 itemInSlot.amount++;
                 itemInSlot.RefreshCount();

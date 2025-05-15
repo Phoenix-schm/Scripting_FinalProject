@@ -1,12 +1,29 @@
 using UnityEngine;
 
-public class PizzaOven_Interactable : MonoBehaviour, IInteractable
+public class PizzaOven_Interactable : Interactable
 {
-    private bool openPizzaOven; //false
-
-    public void Interact(PlayerInteraction player)
+    public GameObject pizzaOvenMenu;
+    private PlayerMovementController playerMovement;
+    private PlayerInteraction player;
+    public override void Interact(PlayerInteraction playerInteraction)
     {
+        // TODO: Exit on Tab press in player interaction
+        playerMovement = playerInteraction.GetComponent<PlayerMovementController>();
+        player = playerInteraction;
+
+        playerMovement.enabled = false;
+        player.interactionText.enabled = false;
+        player.enabled = false;
+
         Debug.Log("You've interacted with a pizza oven");
-        openPizzaOven = !openPizzaOven;
+
+        pizzaOvenMenu.SetActive(true);
+    }
+
+    private void ExitPizzaMenu()
+    {
+        pizzaOvenMenu.SetActive(false);
+        playerMovement.enabled = true;
+        player.enabled = true;
     }
 }
