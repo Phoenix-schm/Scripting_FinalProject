@@ -64,6 +64,10 @@ MonoBehaviour:
   - {fileID: 8469392382266859728}
   - {fileID: 4318824020500724138}
   inventoryItemPrefab: {fileID: 3067359352308599011, guid: e8c3df7b4797c4a4486774131ccbbb17, type: 3}
+  subMenu: {fileID: 2324942040962265354}
+  playerInteraction: {fileID: 3197095384313801789}
+  pickUpItemData: {fileID: 0}
+  selectedItem: {fileID: 0}
 --- !u!1 &301174869199454521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunBarrel: {fileID: 5050181672764435843}
+  prefabBullet: {fileID: 0}
 --- !u!1 &7618258961362242829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,8 +1572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainInventory: {fileID: 5249093273413188932}
-  subMenu: {fileID: 2324942040962265354}
-  background: {fileID: 0}
+  inventoryManager: {fileID: 2653123804914771607}
 --- !u!1001 &396254716296972279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2152,7 +2156,7 @@ PrefabInstance:
     - target: {fileID: 8708835715673932435, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5145438158771181852}
+      objectReference: {fileID: 2653123804914771607}
     - target: {fileID: 8708835715673932435, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2163,7 +2167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8708835715673932435, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventorySubMenu, Assembly-CSharp
+      value: PlayerInventoryManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8708835715673932435, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2196,7 +2200,7 @@ PrefabInstance:
     - target: {fileID: 9155508056935961669, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5145438158771181852}
+      objectReference: {fileID: 2653123804914771607}
     - target: {fileID: 9155508056935961669, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2207,13 +2211,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9155508056935961669, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventorySubMenu, Assembly-CSharp
+      value: PlayerInventoryManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9155508056935961669, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7786271684622300954, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2228,17 +2233,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2174784771876801321, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
   m_PrefabInstance: {fileID: 3127222629246955014}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5145438158771181852 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7786271684622300954, guid: bc878b8fa82e3c545a1f9684087c731a, type: 3}
-  m_PrefabInstance: {fileID: 3127222629246955014}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324942040962265354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1092d0ed384e8c41a2dbeed03bb340a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3246137719090242717
 PrefabInstance:
   m_ObjectHideFlags: 0

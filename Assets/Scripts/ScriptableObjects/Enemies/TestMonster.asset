@@ -18,6 +18,6 @@ MonoBehaviour:
   damage: 5
   pointAmount: 10
   monsterPrefab: {fileID: 5665602406334452161, guid: 7d2311003d8ae9d4aa0abb469f5cbc6b, type: 3}
-  dropLoot: {fileID: 3295114667254940127, guid: ba26257ba844e4848908e077507f0ec0, type: 3}
+  dropLoot: {fileID: 5901148600700096243, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
   dropAmount: 2
   tier: 0

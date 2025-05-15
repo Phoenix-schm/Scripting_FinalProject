@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [HideInInspector] public PickUpItemData itemData;
+    public PickUpItemData itemData;
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public int amount = 1;
     [HideInInspector] public int maxAmount = 8;

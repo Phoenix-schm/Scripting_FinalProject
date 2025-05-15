@@ -10,8 +10,7 @@ public class CanvasRaycaster : MonoBehaviour
     EventSystem eventSystem;
 
     public GameObject mainInventory;
-    public GameObject subMenu;
-    public GameObject background;
+    public PlayerInventoryManager inventoryManager;
 
     private InventoryItem inventoryItem;
 
@@ -40,16 +39,15 @@ public class CanvasRaycaster : MonoBehaviour
                 {
                     if (result.gameObject.TryGetComponent<InventoryItem>(out inventoryItem))    // check what it's hitting is what you want
                     {
-                        subMenu.transform.position = pointerEventData.position;
-                        subMenu.SetActive(true);
+                        inventoryManager.subMenu.transform.position = pointerEventData.position;
+                        inventoryManager.subMenu.SetActive(true);
 
-                        InventorySubMenu subMenuScript = subMenu.GetComponent<InventorySubMenu>();
-                        subMenuScript.selectedItem = result.gameObject;
-                        subMenuScript.pickUpItemData = inventoryItem.itemData;
+                        inventoryManager.selectedItem = result.gameObject;
+                        inventoryManager.pickUpItemData = inventoryItem.itemData;
                     }
                 }
             }
-            else if (Input.GetMouseButtonDown(0) && subMenu.activeSelf)
+            else if (Input.GetMouseButtonDown(0) && inventoryManager.subMenu.activeSelf)
             {
                 pointerEventData = new PointerEventData(eventSystem);
                 pointerEventData.position = Input.mousePosition;
@@ -60,7 +58,7 @@ public class CanvasRaycaster : MonoBehaviour
                 bool hitSubMenu = false;
                 foreach(RaycastResult result in results)
                 {
-                    if (result.gameObject == subMenu.GetComponentInChildren<Image>().gameObject)
+                    if (result.gameObject == inventoryManager.subMenu.GetComponentInChildren<Image>().gameObject)
                     {
                         hitSubMenu = true;
                     }
@@ -68,15 +66,15 @@ public class CanvasRaycaster : MonoBehaviour
 
                 if (!hitSubMenu)
                 {
-                    subMenu.SetActive(false);
+                    inventoryManager.subMenu.SetActive(false);
                 }
             }
         }
         else
         {
-            if (subMenu.activeSelf)
+            if (inventoryManager.subMenu.activeSelf)
             {
-                subMenu.SetActive(false);
+                inventoryManager.subMenu.SetActive(false);
             }
         }
     }
