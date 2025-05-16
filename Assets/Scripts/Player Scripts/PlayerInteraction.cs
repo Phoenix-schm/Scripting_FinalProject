@@ -13,8 +13,8 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject playerInventory;
     public GameObject inventoryManager;
     public GameObject playerStatusUI;
-    private bool _isOtherMenusActive;       // for referencing if other menus are active
-    private bool _otherMenu;
+    private bool _areOtherMenusActive;       // for referencing if other menus are active
+    public bool isOtherMenuActive;
 
     [Header("Player Variables")]
     public PlayerVariables playerVariables;
@@ -42,12 +42,12 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         interactionText.enabled = false;
-        _isOtherMenusActive = playerInventory.activeSelf || _otherMenu;
+        _areOtherMenusActive = playerInventory.activeSelf || isOtherMenuActive;
 
         Ray cameraRay = new Ray(_playerCamera.transform.position, _playerCamera.transform.forward);   // Creates ray from middle of camera, shoots forwards
         Debug.DrawRay(cameraRay.origin, cameraRay.direction * rayDistance);
 
-        if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, rayDistance, mask) && !_isOtherMenusActive)   // if the ray hits an object that the mask allows. Currently "Default"
+        if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, rayDistance, mask) && !_areOtherMenusActive)   // if the ray hits an object that the mask allows. Currently "Default"
         {                                                                                                    //    and no menus are active
             GameObject hitObject = hitInfo.collider.gameObject;
             if (hitObject.TryGetComponent<Interactable>(out Interactable interactableObject))   // if you've hit something that can be interacted with
@@ -62,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (Input.GetKeyDown(_openInventory))
         {            
-            if (!playerInventory.activeSelf && !_isOtherMenusActive)        // if inventory isn't active
+            if (!playerInventory.activeSelf && !_areOtherMenusActive)        // if inventory isn't active
             {
                 Debug.Log("You've opened you're inventory");
                 playerInventory.SetActive(true);
@@ -80,7 +80,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            if (!_isOtherMenusActive)
+            if (!_areOtherMenusActive)
             {
                 _playerShoot.Shoot();
             }
@@ -94,6 +94,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(_interactButton))
         {
             interactableObject.Interact(this);
+            isOtherMenuActive = true;
         }
     }
     /// <summary>

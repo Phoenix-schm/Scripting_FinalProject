@@ -11,7 +11,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public PickUpItemData itemData;
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public int amount = 1;
-    [HideInInspector] public int maxAmount = 8;
+    [HideInInspector] public int maxAmount = 9;
     
     public Image itemImage;
     public TextMeshProUGUI amountText;

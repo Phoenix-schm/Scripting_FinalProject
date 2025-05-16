@@ -151,3 +151,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpData: {fileID: 11400000, guid: 4d6dca61e4002a64ab09f02ad18fffbe, type: 2}
   healAmount: 20
+  playerVariables: {fileID: 11400000, guid: d169413900237ce4db5a5ccda714b1b2, type: 2}

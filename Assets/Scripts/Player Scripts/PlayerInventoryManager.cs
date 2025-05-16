@@ -7,6 +7,7 @@ public class PlayerInventoryManager : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public GameObject subMenu;
     public PlayerInteraction playerInteraction;
+    public CraftingManager pizzaCrafting;
 
     [HideInInspector] public PickUpItemData pickUpItemData = null;
     [HideInInspector] public GameObject selectedItem = null;
@@ -22,13 +23,19 @@ public class PlayerInventoryManager : MonoBehaviour
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
                 if (itemInSlot == null)                                 // The slot is empty
                 {
-                    SpawnItemInSlot(item, slot);
+                    itemInSlot = SpawnItemInSlot(item, slot);
+
+                    if (item.type == PickUpTypes.Ingredient)
+                    {
+                        pizzaCrafting.UpdatePizzaOvenContent(itemInSlot);
+                    }
 
                     hasBeenPlaced = true;
                     break;
                 }
             }
         }
+
         return hasBeenPlaced;
     }
 
@@ -40,28 +47,39 @@ public class PlayerInventoryManager : MonoBehaviour
     /// <returns></returns>
     private bool IsAlreadyInInventory(PickUpItemData item)
     {
-        bool isAlreadyInInventory = false;
+        bool addedToInventoryStack = false;
         foreach (InventorySlot slot in inventorySlots)
         {
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            // if the item is already in the inventory, and has not reached the stack limit
-            if (itemInSlot != null && itemInSlot.itemData == item && itemInSlot.amount < itemInSlot.maxAmount && item.stackable == true)
+
+            bool isInInventoryAndStackable = itemInSlot != null && itemInSlot.itemData == item && 
+                                             itemInSlot.amount < itemInSlot.maxAmount && item.stackable == true;
+            if (isInInventoryAndStackable)
             {
                 itemInSlot.amount++;
                 itemInSlot.RefreshCount();
-                isAlreadyInInventory = true;
+
+                if (item.type == PickUpTypes.Ingredient)
+                {
+                    pizzaCrafting.UpdatePizzaOvenContent(itemInSlot);
+                }
+
+                addedToInventoryStack = true;
+                break;
             }
         }
-        return isAlreadyInInventory;
+        return addedToInventoryStack;
     }
 
-    private void SpawnItemInSlot(PickUpItemData item, InventorySlot slot)
+    private InventoryItem SpawnItemInSlot(PickUpItemData item, InventorySlot slot)
     {
         GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
         if (newItem.TryGetComponent<InventoryItem>(out InventoryItem inventoryItem))
         {
             inventoryItem.InitializeItem(item);
         }
+
+        return inventoryItem;
     }
 
     /// <summary>
@@ -84,6 +102,15 @@ public class PlayerInventoryManager : MonoBehaviour
             }
         }
     }
+    
+    public void RemoveItemAmount(int amount, Ingredient ingredient)
+    {
+        // go through the inventory
+        // remove the needed ingredients by amount
+        
+
+        // TODO: Add pizza to inventory function. button will make it work
+    }
 
     public void DropItem()
     {
@@ -104,7 +131,7 @@ public class PlayerInventoryManager : MonoBehaviour
         {
             if (pickUpItemData.prefab.TryGetComponent<HealthPickUp>(out HealthPickUp healthPickUp))     // If it's a valid health item
             {
-                isItemUsed = healthPickUp.HealPlayer(playerInteraction);
+                isItemUsed = healthPickUp.HealPlayer();
                 PlayerStatusUI statusUI = playerInteraction.playerStatusUI.GetComponent<PlayerStatusUI>();
                 statusUI.UpdatePlayerHealthText();
             }

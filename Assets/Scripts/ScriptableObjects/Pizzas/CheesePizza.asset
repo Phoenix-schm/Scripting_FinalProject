@@ -19,4 +19,7 @@ MonoBehaviour:
   range: {x: 5, y: 4}
   type: 3
   stackable: 1
-  recipe: 
+  recipe:
+  - name: Cheese
+    ingredient: {fileID: 11400000, guid: 0bff0ff6ea3c73a44b55cee8ccf32792, type: 2}
+    amountNeeded: 3

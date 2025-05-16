@@ -22,7 +22,7 @@ public class PickUpItem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Object is destroyed");
+            Debug.Log("Object is picked up.");
             Destroy(gameObject);
         }
     }

@@ -3,11 +3,11 @@ using UnityEngine;
 public class HealthPickUp : PickUpItem
 {
     [SerializeField] private int healAmount;
-
-    public bool HealPlayer(PlayerInteraction player)
+    [SerializeField] PlayerVariables playerVariables;
+    public bool HealPlayer()
     {
         bool isItemUsed = false;
-        PlayerVariables playerVariables = player.playerVariables;
+
         if (playerVariables.health < playerVariables.maxHealth)
         {
             playerVariables.health += healAmount;

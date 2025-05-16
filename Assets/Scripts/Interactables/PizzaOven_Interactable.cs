@@ -3,11 +3,12 @@ using UnityEngine;
 public class PizzaOven_Interactable : Interactable
 {
     public GameObject pizzaOvenMenu;
+    public GameObject noPizzasMessage;
+    public CraftingManager craftingManager;
     private PlayerMovementController playerMovement;
     private PlayerInteraction player;
     public override void Interact(PlayerInteraction playerInteraction)
     {
-        // TODO: Exit on Tab press in player interaction
         playerMovement = playerInteraction.GetComponent<PlayerMovementController>();
         player = playerInteraction;
 
@@ -15,15 +16,44 @@ public class PizzaOven_Interactable : Interactable
         player.interactionText.enabled = false;
         player.enabled = false;
 
+        Cursor.lockState = CursorLockMode.None;                     // Make Cursor visible
+        Cursor.visible = true;
+
         Debug.Log("You've interacted with a pizza oven");
 
         pizzaOvenMenu.SetActive(true);
+
+        PizzaOvenSlot slot = craftingManager.gameObject.GetComponentInChildren<PizzaOvenSlot>();
+        if (slot == null)
+        {
+            noPizzasMessage.SetActive(true);
+        }
+        else
+        {
+            noPizzasMessage.SetActive(false);
+        }
     }
 
-    private void ExitPizzaMenu()
+    public void ExitPizzaMenu()
     {
         pizzaOvenMenu.SetActive(false);
         playerMovement.enabled = true;
+        
         player.enabled = true;
+        player.isOtherMenuActive = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void Update()
+    {
+        if (pizzaOvenMenu.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E))
+            {
+                ExitPizzaMenu();
+            }
+        }
     }
 }

@@ -3,5 +3,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PizzaResult", menuName = "Scriptable Objects/Pizza Result")]
 public class PizzaResultData : PickUpItemData
 {
-    public string recipe;
+    public Ingredient[] recipe;
 }

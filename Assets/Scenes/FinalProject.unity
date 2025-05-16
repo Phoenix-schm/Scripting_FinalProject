@@ -2078,11 +2078,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &597000080 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6193522598096634362, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
-  m_PrefabInstance: {fileID: 4149049376400719696}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &720368861
 Mesh:
   m_ObjectHideFlags: 0
@@ -2552,11 +2547,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &781967042 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6143404170206286744, guid: 3d4856592845b7f459470907a861f136, type: 3}
-  m_PrefabInstance: {fileID: 1026374926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &802533248
 Mesh:
   m_ObjectHideFlags: 0
@@ -2834,111 +2824,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6143404170206286744, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6337207174940842301, guid: 3d4856592845b7f459470907a861f136, type: 3}
       propertyPath: m_Name
       value: Pizza Oven
       objectReference: {fileID: 0}
-    - target: {fileID: 6337207174940842301, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: displayName
-      value: Pizza Oven
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: pizzaOvenMenu
-      value: 
-      objectReference: {fileID: 781967042}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4149049376400719710}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 4149049376400719712}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 597000080}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: onPizzaOvenOpen.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8819688021268830819, guid: 3d4856592845b7f459470907a861f136, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -258
+    - target: {fileID: 7470746117968513475, guid: 3d4856592845b7f459470907a861f136, type: 3}
+      propertyPath: m_Name
+      value: Crafting Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d4856592845b7f459470907a861f136, type: 3}
+--- !u!114 &1026374928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1313123205556788137, guid: 3d4856592845b7f459470907a861f136, type: 3}
+  m_PrefabInstance: {fileID: 1026374926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb29b1730f55569489f12b4951717806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1222715469
 GameObject:
   m_ObjectHideFlags: 0
@@ -8000,6 +7909,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1302840290}
     - target: {fileID: 2653123804914771607, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
+      propertyPath: pizzaCrafting
+      value: 
+      objectReference: {fileID: 1026374928}
+    - target: {fileID: 2653123804914771607, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
       propertyPath: playerInteraction
       value: 
       objectReference: {fileID: 4149049376400719710}
@@ -8156,17 +8069,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ba1a4ef29d2a9b4893d8049496f20c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4149049376400719712 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8689119411242627860, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
-  m_PrefabInstance: {fileID: 4149049376400719696}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781277378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4854f1a85ced88479d5c007ea362b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5039951625744557322
