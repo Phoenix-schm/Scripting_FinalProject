@@ -5,7 +5,7 @@ public class PizzaOven_Interactable : Interactable
     public GameObject pizzaOvenMenu;
     public GameObject noPizzasMessage;
     public CraftingManager craftingManager;
-    public PlayerInventoryManager playerInventoryManager;
+    [HideInInspector] public PlayerInventoryManager playerInventoryManager;
 
     private PlayerMovementController playerMovement;
     private PlayerInteraction player;
@@ -14,6 +14,8 @@ public class PizzaOven_Interactable : Interactable
         playerMovement = playerInteraction.GetComponent<PlayerMovementController>();
         player = playerInteraction;
         playerInventoryManager = player.gameObject.GetComponentInChildren<PlayerInventoryManager>();
+        craftingManager.playerInventoryManager = playerInventoryManager;
+
 
         playerMovement.enabled = false;
         player.interactionText.enabled = false;
@@ -59,6 +61,4 @@ public class PizzaOven_Interactable : Interactable
             }
         }
     }
-
-
 }

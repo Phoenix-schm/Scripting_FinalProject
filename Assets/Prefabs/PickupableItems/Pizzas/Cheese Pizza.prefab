@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4426061536325020722}
   - component: {fileID: 6186237053060109924}
   - component: {fileID: 362604399580568552}
-  - component: {fileID: 2617583797808649856}
+  - component: {fileID: 5779457242436475584}
+  - component: {fileID: 7275752043752624440}
   - component: {fileID: 2698885230906622992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cheese Pizza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 9168792853987858685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.423292, y: 1.6345996, z: 2.0235755}
-  m_LocalScale: {x: 1, y: 0.0213709, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.042707607, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,8 +89,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2617583797808649856
-CapsuleCollider:
+--- !u!65 &5779457242436475584
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,11 +107,36 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!54 &7275752043752624440
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9168792853987858685}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &2698885230906622992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,4 +149,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cbc36eecc2d8645bb0d4a5756beb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpData: {fileID: 0}
+  pickUpData: {fileID: 11400000, guid: 262bc1c82ff05e14080b97cc4e6c460f, type: 2}

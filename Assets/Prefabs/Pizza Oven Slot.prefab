@@ -419,9 +419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fcb41cf38b36b4da3b53f9c40f398a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pizzaSlotResult: {fileID: 0}
-  playerInventory: {fileID: 0}
-  player: {fileID: 301174869199454521, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
+  pizzaResult: {fileID: 0}
+  inventoryManager: {fileID: 0}
   pizzaName: {fileID: 2129962080826136468}
   pizzaRecipe: {fileID: 1932006100536988030}
-  isUsable: 0
+  accessIngredients: []
+  pizzaOvenClone: {fileID: 0}

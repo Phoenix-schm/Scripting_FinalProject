@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 888497874108060024}
   - component: {fileID: 5519001527947312353}
   - component: {fileID: 3812378357986820526}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cheese PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,7 +7,7 @@ public class CraftingManager : MonoBehaviour
     public List<PizzaOvenSlot> pizzaSlots = new List<PizzaOvenSlot>();
 
     public PizzaResultData[] pizzaList;
-    public PlayerInventoryManager playerInventoryManager;
+    [HideInInspector] public PlayerInventoryManager playerInventoryManager;
 
     private void Start()
     {

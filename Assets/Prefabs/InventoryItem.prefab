@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
   parentAfterDrag: {fileID: 0}
+  maxAmount: 9
   amount: 1
-  maxAmount: 8
   itemImage: {fileID: 5446306002582488295}
   amountText: {fileID: 3855072890511431192}

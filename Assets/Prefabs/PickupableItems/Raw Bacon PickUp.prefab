@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7342458868630204211}
   - component: {fileID: 3713866054797619528}
   - component: {fileID: 3675244528441348361}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Raw Bacon PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

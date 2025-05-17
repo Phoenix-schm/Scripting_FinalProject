@@ -18,7 +18,7 @@ MonoBehaviour:
   prefab: {fileID: 9168792853987858685, guid: b202ad08b5ceb8e43b2bf1bfc2311259, type: 3}
   range: {x: 5, y: 4}
   type: 3
-  stackable: 1
+  stackable: 0
   recipe:
   - name: Cheese
     ingredient: {fileID: 11400000, guid: 0bff0ff6ea3c73a44b55cee8ccf32792, type: 2}

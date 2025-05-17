@@ -10,7 +10,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     public PickUpItemData itemData;
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public int maxAmount = 9;
+    public int maxAmount = 9;
     public int amount = 1;
     
     public Image itemImage;

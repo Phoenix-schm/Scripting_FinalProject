@@ -1,12 +1,12 @@
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PizzaOvenSlot : MonoBehaviour
 {
     public PizzaResultData pizzaResult;
-    public GameObject player;
-    
+    [HideInInspector] public PlayerInventoryManager inventoryManager;
 
     public TextMeshProUGUI pizzaName;
     public TextMeshProUGUI pizzaRecipe;
@@ -71,20 +71,26 @@ public class PizzaOvenSlot : MonoBehaviour
     /// </summary>
     public void AddPizzaToInventory()
     {
-        if (accessIngredients.Count == pizzaResult.recipe.Length)
+        if (inventoryManager != null)
         {
-            PlayerInventoryManager playerInventory = player.GetComponentInChildren<PlayerInventoryManager>();
-            for (int i = 0; i < pizzaResult.recipe.Length; i++)
+            if (accessIngredients.Count == pizzaResult.recipe.Length)
             {
-                playerInventory.RemoveItemAmount(accessIngredients[i], pizzaResult.recipe[i].amountNeeded);
+                for (int i = 0; i < pizzaResult.recipe.Length; i++)
+                {
+                    inventoryManager.RemoveItemAmount(accessIngredients[i], pizzaResult.recipe[i].amountNeeded);
+                }
+
+                inventoryManager.AddItem(pizzaResult);
             }
-
-            playerInventory.AddItem(pizzaResult);
-
+            else
+            {
+                Debug.Log("Could not add pizza to inventory");
+                return;
+            }
         }
         else
         {
-            return;
+            Debug.Log(gameObject.name + ": Inventory Manager is null");
         }
     }
 }
