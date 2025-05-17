@@ -5,12 +5,15 @@ public class PizzaOven_Interactable : Interactable
     public GameObject pizzaOvenMenu;
     public GameObject noPizzasMessage;
     public CraftingManager craftingManager;
+    public PlayerInventoryManager playerInventoryManager;
+
     private PlayerMovementController playerMovement;
     private PlayerInteraction player;
     public override void Interact(PlayerInteraction playerInteraction)
     {
         playerMovement = playerInteraction.GetComponent<PlayerMovementController>();
         player = playerInteraction;
+        playerInventoryManager = player.gameObject.GetComponentInChildren<PlayerInventoryManager>();
 
         playerMovement.enabled = false;
         player.interactionText.enabled = false;
@@ -56,4 +59,6 @@ public class PizzaOven_Interactable : Interactable
             }
         }
     }
+
+
 }

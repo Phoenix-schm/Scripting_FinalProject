@@ -5,12 +5,20 @@ public class PlayerInventoryManager : MonoBehaviour
 {
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
+    public GameObject craftingManagerObject;
     public GameObject subMenu;
+
     public PlayerInteraction playerInteraction;
-    public CraftingManager pizzaCrafting;
+    private CraftingManager craftingManager;
 
     [HideInInspector] public PickUpItemData pickUpItemData = null;
     [HideInInspector] public GameObject selectedItem = null;
+
+    private void Awake()
+    {
+        craftingManager = craftingManagerObject.GetComponentInChildren<CraftingManager>();
+        craftingManager.playerInventoryManager = this;
+    }
 
     public bool AddItem(PickUpItemData item)
     {
@@ -27,7 +35,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
                     if (item.type == PickUpTypes.Ingredient)
                     {
-                        pizzaCrafting.UpdatePizzaOvenContent(itemInSlot);
+                        craftingManager.UpdatePizzaOvenContent(itemInSlot);
                     }
 
                     hasBeenPlaced = true;
@@ -61,7 +69,10 @@ public class PlayerInventoryManager : MonoBehaviour
 
                 if (item.type == PickUpTypes.Ingredient)
                 {
-                    pizzaCrafting.UpdatePizzaOvenContent(itemInSlot);
+                    foreach (PizzaOvenSlot pizzaOvenSlot in craftingManager.pizzaSlots)
+                    {
+                        pizzaOvenSlot.UpdateSlot(itemInSlot);
+                    }
                 }
 
                 addedToInventoryStack = true;
@@ -84,15 +95,20 @@ public class PlayerInventoryManager : MonoBehaviour
 
     /// <summary>
     /// Removes item from inventory, if item amount is <= 0, Destroy it.
+    /// Used inCanvasRaycaster
     /// </summary>
     private void RemoveItem()
     {
         if (pickUpItemData != null && selectedItem != null)
         {
-            if (selectedItem.TryGetComponent<InventoryItem>(out InventoryItem item))
+            if (selectedItem.TryGetComponent<InventoryItem>(out InventoryItem itemInSlot))
             {
-                item.amount--;
-                if (item.amount <= 0)
+                itemInSlot.amount--;
+                itemInSlot.RefreshCount();
+
+                UpdatePizzaSlots(itemInSlot);
+
+                if (itemInSlot.amount <= 0)
                 {
                     Destroy(selectedItem);
                 }
@@ -103,13 +119,17 @@ public class PlayerInventoryManager : MonoBehaviour
         }
     }
     
-    public void RemoveItemAmount(int amount, Ingredient ingredient)
+    public void RemoveItemAmount(InventoryItem itemAccess, int amountToRemove)
     {
-        // go through the inventory
-        // remove the needed ingredients by amount
-        
+        itemAccess.amount -= amountToRemove;
+        itemAccess.RefreshCount();
 
-        // TODO: Add pizza to inventory function. button will make it work
+        UpdatePizzaSlots(itemAccess);
+
+        if (itemAccess.amount <= 0)
+        {
+            Destroy(itemAccess);
+        }
     }
 
     public void DropItem()
@@ -124,6 +144,9 @@ public class PlayerInventoryManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used by subMenu in canvasRaycaster
+    /// </summary>
     public void UseItem()
     {
         bool isItemUsed = false;
@@ -168,6 +191,19 @@ public class PlayerInventoryManager : MonoBehaviour
     {
         pickUpItemData = null;
         selectedItem = null;
+    }
+
+    public void UpdatePizzaSlots(InventoryItem itemInSlot)
+    {
+        for (int index = 0; index < craftingManager.pizzaSlots.Count;)
+        {
+            craftingManager.pizzaSlots?[index].UpdateSlot(itemInSlot);
+
+            if (craftingManager.pizzaSlots[index] != null)
+            {
+                index++;
+            }
+        }
     }
 
 }

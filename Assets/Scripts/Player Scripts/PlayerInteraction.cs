@@ -24,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerShoot _playerShoot;
 
     // interaction buttons
-    private KeyCode _interactButton = KeyCode.E;
+    private KeyCode _interactButton = KeyCode.Mouse0;
     private KeyCode _pickUpButton = KeyCode.Mouse0;
     private KeyCode _openInventory = KeyCode.Tab;
     //private char _interactInput = 'E';
@@ -83,14 +83,14 @@ public class PlayerInteraction : MonoBehaviour
             if (!_areOtherMenusActive)
             {
                 _playerShoot.Shoot();
+                Debug.Log("You attacked");
             }
-            Debug.Log("You attacked");
         }
     }
     private void PlayerInteract(Interactable interactableObject)
     {
         interactionText.enabled = true;
-        interactionText.text = "Press " + _interactButton + " to open the " + interactableObject.displayName;
+        interactionText.text = "Press " + _pickUpInput + " to open the " + interactableObject.displayName;
         if (Input.GetKeyDown(_interactButton))
         {
             interactableObject.Interact(this);

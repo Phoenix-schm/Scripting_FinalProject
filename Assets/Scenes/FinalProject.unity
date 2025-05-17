@@ -2783,7 +2783,7 @@ PrefabInstance:
     - target: {fileID: 1313123205556788137, guid: 3d4856592845b7f459470907a861f136, type: 3}
       propertyPath: playerInventoryManager
       value: 
-      objectReference: {fileID: 862338196}
+      objectReference: {fileID: 0}
     - target: {fileID: 3386659542145126930, guid: 3d4856592845b7f459470907a861f136, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.13
@@ -2828,9 +2828,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pizza Oven
       objectReference: {fileID: 0}
+    - target: {fileID: 6560475614075020237, guid: 3d4856592845b7f459470907a861f136, type: 3}
+      propertyPath: craftingManager
+      value: 
+      objectReference: {fileID: 6590130992387739146, guid: d0afe15494cd14e4ebf04f37342f15d9, type: 3}
     - target: {fileID: 7470746117968513475, guid: 3d4856592845b7f459470907a861f136, type: 3}
       propertyPath: m_Name
       value: Crafting Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819688021268830819, guid: 3d4856592845b7f459470907a861f136, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2842,7 +2850,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1313123205556788137, guid: 3d4856592845b7f459470907a861f136, type: 3}
   m_PrefabInstance: {fileID: 1026374926}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1966177202}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb29b1730f55569489f12b4951717806, type: 3}
@@ -5283,6 +5291,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602491250}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1665492691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901148600700096243, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_Name
+      value: Cheese PickUp (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
 --- !u!1 &1666259804
 GameObject:
   m_ObjectHideFlags: 0
@@ -7019,7 +7084,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 723fedbd362f1e243b57210e3db2c0e2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2437a81f328797f469bb16be5e3e21ac, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1781277378 stripped
 GameObject:
@@ -7378,6 +7443,63 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1001 &1881496891
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396146609618841950, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901148600700096243, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
+      propertyPath: m_Name
+      value: Cheese PickUp (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa80f1b481adaa14882c3cb71d9b9109, type: 3}
 --- !u!43 &1897672254
 Mesh:
   m_ObjectHideFlags: 0
@@ -7667,6 +7789,11 @@ MonoBehaviour:
   interactText: 
   displayName: 
   isOpen: 0
+--- !u!1 &1966177202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7470746117968513475, guid: 3d4856592845b7f459470907a861f136, type: 3}
+  m_PrefabInstance: {fileID: 1026374926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2046614896
 GameObject:
   m_ObjectHideFlags: 0
@@ -7909,6 +8036,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1302840290}
     - target: {fileID: 2653123804914771607, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
+      propertyPath: pizzaOven
+      value: 
+      objectReference: {fileID: 1966177202}
+    - target: {fileID: 2653123804914771607, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
+      propertyPath: craftManager
+      value: 
+      objectReference: {fileID: 1966177202}
+    - target: {fileID: 2653123804914771607, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
       propertyPath: pizzaCrafting
       value: 
       objectReference: {fileID: 1026374928}
@@ -7916,6 +8051,10 @@ PrefabInstance:
       propertyPath: playerInteraction
       value: 
       objectReference: {fileID: 4149049376400719710}
+    - target: {fileID: 2653123804914771607, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
+      propertyPath: craftingManagerObject
+      value: 
+      objectReference: {fileID: 1966177202}
     - target: {fileID: 3197095384313801789, guid: 0519b83abcb9d884889f2e8f8b655f7e, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -8394,6 +8533,8 @@ SceneRoots:
   - {fileID: 224246160}
   - {fileID: 2046614903}
   - {fileID: 6765810205698722294}
+  - {fileID: 1881496891}
+  - {fileID: 1665492691}
   - {fileID: 143789960}
   - {fileID: 41489951}
   - {fileID: 291691540}

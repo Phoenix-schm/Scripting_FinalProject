@@ -1,45 +1,64 @@
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PizzaOvenSlot : MonoBehaviour
 {
-    public PizzaResultData pizzaSlotResult;
+    public PizzaResultData pizzaResult;
     public GameObject player;
+    
 
     public TextMeshProUGUI pizzaName;
     public TextMeshProUGUI pizzaRecipe;
-    public bool isUsable;
+
+    [HideInInspector] public List<InventoryItem> accessIngredients = new List<InventoryItem>();
+    [HideInInspector] public GameObject pizzaOvenClone = null;
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="pizzaResult"></param>
-    /// <param name="hasAllIngedients"></param>
-    public void Initialize(PizzaResultData pizzaResult, bool hasAllIngedients, string recipeText)
+    /// <param name="pizzaData"></param>
+    public void Initialize(PizzaResultData pizzaData, string recipeText, GameObject initialObject)
     {
-        pizzaSlotResult = pizzaResult;
-        pizzaName.text = pizzaSlotResult.displayName;
-        isUsable = hasAllIngedients;
+        pizzaResult = pizzaData;
+        pizzaName.text = pizzaResult.displayName;
         pizzaRecipe.text = recipeText;
+        pizzaOvenClone = initialObject;
+        accessIngredients.Clear();
     }
 
-    private string GetRecipe(PizzaResultData pizzaResult)
+    public void UpdateSlot(InventoryItem item)
     {
-        string recipe = "";
-        Ingredient[] ingredientList = pizzaResult.recipe;
-
-        for (int i = 0; i < ingredientList.Length; i++)                 // going through each pizza ingredient
+        string recipeText = "";
+        int hasIngredients = 0;
+        foreach (Ingredient ingredient in pizzaResult.recipe)
         {
-            Ingredient ingredient = ingredientList[i];
-            recipe += ingredient.name + " x" + ingredient.amountNeeded;
-
-            if (ingredientList.Length > 1 && i != ingredientList.Length)
+            if (item.itemData == ingredient.ingredient && item.amount >= ingredient.amountNeeded)
             {
-                recipe += ", ";
+                hasIngredients++;
+                recipeText += ingredient.name + " x" + ingredient.amountNeeded + " ";
+                if (!accessIngredients.Contains(item))
+                {
+                    accessIngredients.Add(item);
+                }
+            }
+            else if (item.itemData == ingredient.ingredient && item.amount <= ingredient.amountNeeded && item.amount != 0)
+            {
+                hasIngredients++;
+                recipeText += "<color=red>" + ingredient.name + " x" + ingredient.amountNeeded + " </color>";
+            }
+            else
+            {
+                recipeText += "<color=red>" + ingredient.name + " x" + ingredient.amountNeeded + " </color>";
             }
         }
 
-        return recipe;
+        pizzaRecipe.text = recipeText;
+
+        if (hasIngredients == 0)
+        {
+            Destroy(pizzaOvenClone);
+        }
     }
 
     public void DestroySelf()
@@ -47,17 +66,25 @@ public class PizzaOvenSlot : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Add pizza to inventory and removes the required ingredients from the inventory
+    /// </summary>
     public void AddPizzaToInventory()
     {
-        if (!isUsable)
+        if (accessIngredients.Count == pizzaResult.recipe.Length)
         {
-            return;
+            PlayerInventoryManager playerInventory = player.GetComponentInChildren<PlayerInventoryManager>();
+            for (int i = 0; i < pizzaResult.recipe.Length; i++)
+            {
+                playerInventory.RemoveItemAmount(accessIngredients[i], pizzaResult.recipe[i].amountNeeded);
+            }
+
+            playerInventory.AddItem(pizzaResult);
+
         }
         else
         {
-            PlayerInventoryManager playerInventory = player.GetComponentInChildren<PlayerInventoryManager>();
-            playerInventory.AddItem(pizzaSlotResult);
-            Destroy(gameObject);
+            return;
         }
     }
 }
