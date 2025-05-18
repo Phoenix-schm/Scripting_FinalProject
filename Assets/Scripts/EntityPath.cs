@@ -34,7 +34,7 @@ public class EntityPath : MonoBehaviour
 
             if (drawNumbers)
             {
-                Handles.Label(waypoints[i].position, i.ToString(), labelStyle);
+                //Handles.Label(waypoints[i].position, i.ToString(), labelStyle);
             }
 
             // draw lines between points

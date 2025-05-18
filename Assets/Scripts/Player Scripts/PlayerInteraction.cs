@@ -12,7 +12,6 @@ public class PlayerInteraction : MonoBehaviour
     public Text interactionText;
     public GameObject playerInventory;
     public GameObject inventoryManager;
-    public GameObject playerStatusUI;
     private bool _areOtherMenusActive;       // for referencing if other menus are active
     public bool isOtherMenuActive;
 
@@ -85,6 +84,10 @@ public class PlayerInteraction : MonoBehaviour
                 _playerShoot.Shoot();
                 Debug.Log("You attacked");
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
     private void PlayerInteract(Interactable interactableObject)

@@ -187,8 +187,8 @@ public class PlayerInventoryManager : MonoBehaviour
             if (pickUpItemData.prefab.TryGetComponent<HealthPickUp>(out HealthPickUp healthPickUp))     // If it's a valid health item
             {
                 isItemUsed = healthPickUp.HealPlayer();
-                PlayerStatusUI statusUI = playerInteraction.playerStatusUI.GetComponent<PlayerStatusUI>();
-                statusUI.UpdatePlayerHealthText();
+                //PlayerStatusUI statusUI = playerInteraction.playerStatusUI.GetComponent<PlayerStatusUI>();
+                //statusUI.UpdatePlayerHealthText();
             }
             else
             {
