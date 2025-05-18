@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93cd1c208d89d7d48bb73527c0b0ecbe, type: 3}
-  m_Name: CheesePizza
+  m_Name: BaconPizza
   m_EditorClassIdentifier: 
-  itemId: CheesePizza
-  displayName: Cheese Pizza
-  icon: {fileID: 21300000, guid: 10871ee655978874fbaa5808418df583, type: 3}
-  prefab: {fileID: 9168792853987858685, guid: b202ad08b5ceb8e43b2bf1bfc2311259, type: 3}
+  itemId: BaconPizza
+  displayName: Bacon Pizza
+  icon: {fileID: 21300000, guid: 15bc2cb7cd0ccb846a3ffcfc1dd89dd4, type: 3}
+  prefab: {fileID: 3265562987836074198, guid: 0af48379edeac704bb4d3664ba46e676, type: 3}
   range: {x: 5, y: 4}
   type: 3
-  stackable: 0
+  stackable: 1
   recipe:
+  - name: Bacon
+    ingredient: {fileID: 11400000, guid: 09adb8871b6dd504b8c0228d7f584f6d, type: 2}
+    amountNeeded: 3
   - name: Cheese
     ingredient: {fileID: 11400000, guid: 0bff0ff6ea3c73a44b55cee8ccf32792, type: 2}
     amountNeeded: 3

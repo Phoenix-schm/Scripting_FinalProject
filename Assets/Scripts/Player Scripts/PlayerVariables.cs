@@ -10,10 +10,4 @@ public class PlayerVariables : ScriptableObject
     public int speed;
     public int points;
 
-    public static void HealthUpdate(PickUpItem healthItem)
-    {
-        if (healthItem != null)
-        {
-        }
-    }
 }

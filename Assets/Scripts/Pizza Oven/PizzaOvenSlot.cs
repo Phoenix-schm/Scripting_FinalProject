@@ -73,14 +73,34 @@ public class PizzaOvenSlot : MonoBehaviour
     {
         if (inventoryManager != null)
         {
-            if (accessIngredients.Count == pizzaResult.recipe.Length)
+            int foundIngredients = 0;
+            foreach (Ingredient ingredient in pizzaResult.recipe)
             {
-                for (int i = 0; i < pizzaResult.recipe.Length; i++)
+                foreach (InventoryItem item in accessIngredients)
                 {
-                    inventoryManager.RemoveItemAmount(accessIngredients[i], pizzaResult.recipe[i].amountNeeded);
+                    if (item.itemData == ingredient.ingredient)
+                    {
+                        foundIngredients++;
+                        break;
+                    }
                 }
+            }
 
-                inventoryManager.AddItem(pizzaResult);
+            if (foundIngredients == pizzaResult.recipe.Count)
+            {
+                foreach (Ingredient ingredient in pizzaResult.recipe)
+                {
+                    foreach (InventoryItem item in accessIngredients)
+                    {
+                        if (item.itemData == ingredient.ingredient)
+                        {
+                            int ingredientIndex = accessIngredients.IndexOf(item);
+                            int recipeIndex = pizzaResult.recipe.IndexOf(ingredient);
+                            inventoryManager.RemoveItemAmount(accessIngredients[ingredientIndex], pizzaResult.recipe[recipeIndex].amountNeeded);
+                            break;
+                        }
+                    }
+                }
             }
             else
             {

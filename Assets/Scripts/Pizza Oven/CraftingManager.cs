@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using static UnityEditor.Progress;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -15,11 +17,23 @@ public class CraftingManager : MonoBehaviour
     }
     public void UpdatePizzaOvenContent(InventoryItem itemInSlot)
     {
-        ClearSlots();
-        pizzaSlots = new List<PizzaOvenSlot>();
+        //ClearSlots();
+        //pizzaSlots = new List<PizzaOvenSlot>();
+
 
         foreach (PizzaResultData pizza in pizzaList)                // checking each Craftable pizza in the list
         {
+            bool alreadyExists = false;
+            if (pizzaSlots.Count > 0)
+            {
+                alreadyExists = CheckPizzaSlots(itemInSlot , pizza);
+            }
+
+            if (alreadyExists)
+            {
+
+            }
+
             GameObject pizzaSlotClone = null;
 
             foreach (Ingredient ingredient in pizza.recipe)         // Checking each ingredient in that pizza
@@ -46,17 +60,38 @@ public class CraftingManager : MonoBehaviour
 
     private void ClearSlots()
     {
-        for (int i = 0; i < pizzaSlots.Count;)
+        foreach (PizzaOvenSlot slot in pizzaSlots)
         {
-            if (pizzaSlots[i] != null)
+            slot.DestroySelf();
+        }
+    }
+
+    private bool CheckPizzaSlots(InventoryItem itemToAdd, PizzaResultData pizza)
+    {
+        bool alreadyExists = false;
+        foreach (PizzaOvenSlot slot in pizzaSlots)
+        {
+            if (slot.pizzaResult == pizza)              // if we already have this pizza slot
             {
-                pizzaSlots[i].DestroySelf();
-            }
-            else
-            {
+                alreadyExists = true;
                 break;
             }
+
+            foreach (InventoryItem item in slot.accessIngredients)  
+            {
+                if (item.itemData == itemToAdd.itemData)            // if we have that ingredient already
+                {
+                    alreadyExists = true;
+                    return true;
+                }
+
+            }
+
+
+            slot.UpdateSlot(itemToAdd);
         }
+
+        return alreadyExists;
     }
 
     /// <summary>
@@ -75,7 +110,7 @@ public class CraftingManager : MonoBehaviour
             {
                 InventoryItem item = GetComponentInChildren<InventoryItem>();
             
-                if (item != null)
+                if (item != null )
                 {
                     if (item.itemData == ingredient.ingredient && item.amount >= ingredient.amountNeeded)     // if player has ingredient and the amount needed
                     {

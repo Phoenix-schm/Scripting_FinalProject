@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class PizzaOven_Interactable : Interactable
 {
-    public GameObject pizzaOvenMenu;
-    public GameObject noPizzasMessage;
-    public CraftingManager craftingManager;
-    [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+    //public GameObject pizzaOvenMenu;
+    //public GameObject noPizzasMessage;
+    //public CraftingManager craftingManager;
+    //[HideInInspector] public PlayerInventoryManager playerInventoryManager;
+
+    public GameObject ovenContent;
+    public Transform pizzaSpawnLocation;
 
     private PlayerMovementController playerMovement;
     private PlayerInteraction player;
@@ -13,10 +16,10 @@ public class PizzaOven_Interactable : Interactable
     {
         playerMovement = playerInteraction.GetComponent<PlayerMovementController>();
         player = playerInteraction;
-        playerInventoryManager = player.gameObject.GetComponentInChildren<PlayerInventoryManager>();
-        craftingManager.playerInventoryManager = playerInventoryManager;
+        //playerInventoryManager = player.gameObject.GetComponentInChildren<PlayerInventoryManager>();
+        //craftingManager.playerInventoryManager = playerInventoryManager;
 
-
+        player.isOtherMenuActive = true;
         playerMovement.enabled = false;
         player.interactionText.enabled = false;
         player.enabled = false;
@@ -26,22 +29,24 @@ public class PizzaOven_Interactable : Interactable
 
         Debug.Log("You've interacted with a pizza oven");
 
-        pizzaOvenMenu.SetActive(true);
+        ovenContent.SetActive(true);
+        //pizzaOvenMenu.SetActive(true);
 
-        PizzaOvenSlot slot = craftingManager.gameObject.GetComponentInChildren<PizzaOvenSlot>();
-        if (slot == null)
-        {
-            noPizzasMessage.SetActive(true);
-        }
-        else
-        {
-            noPizzasMessage.SetActive(false);
-        }
+        //PizzaOvenSlot slot = craftingManager.gameObject.GetComponentInChildren<PizzaOvenSlot>();
+        //if (slot == null)
+        //{
+        //    noPizzasMessage.SetActive(true);
+        //}
+        //else
+        //{
+        //    noPizzasMessage.SetActive(false);
+        //}
     }
 
     public void ExitPizzaMenu()
     {
-        pizzaOvenMenu.SetActive(false);
+        //pizzaOvenMenu.SetActive(false);
+        ovenContent.SetActive(false);
         playerMovement.enabled = true;
         
         player.enabled = true;
@@ -53,7 +58,8 @@ public class PizzaOven_Interactable : Interactable
 
     private void Update()
     {
-        if (pizzaOvenMenu.activeSelf)
+        //if (pizzaOvenMenu.activeSelf)
+        if (ovenContent.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E))
             {

@@ -90,11 +90,20 @@ public class PlayerInteraction : MonoBehaviour
     private void PlayerInteract(Interactable interactableObject)
     {
         interactionText.enabled = true;
-        interactionText.text = "Press " + _pickUpInput + " to open the " + interactableObject.displayName;
+
+        if (interactableObject.interactText != "")
+        {
+            interactionText.text = interactableObject.interactText;
+        }
+        else
+        {
+            interactionText.text = "Press " + _pickUpInput + " to open the " + interactableObject.displayName;
+        }
+
         if (Input.GetKeyDown(_interactButton))
         {
             interactableObject.Interact(this);
-            isOtherMenuActive = true;
+            //isOtherMenuActive = true;
         }
     }
     /// <summary>

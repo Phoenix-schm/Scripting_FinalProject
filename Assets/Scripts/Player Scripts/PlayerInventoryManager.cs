@@ -9,15 +9,15 @@ public class PlayerInventoryManager : MonoBehaviour
     public GameObject subMenu;
 
     public PlayerInteraction playerInteraction;
-    private CraftingManager craftingManager;
+    //private CraftingManager craftingManager;
 
     [HideInInspector] public PickUpItemData pickUpItemData = null;
     [HideInInspector] public GameObject selectedItem = null;
 
     private void Awake()
     {
-        craftingManager = craftingManagerObject.GetComponentInChildren<CraftingManager>();
-        craftingManager.playerInventoryManager = this;
+        //craftingManager = craftingManagerObject.GetComponentInChildren<CraftingManager>();
+        //craftingManager.playerInventoryManager = this;
     }
 
     public bool AddItem(PickUpItemData item)
@@ -33,10 +33,10 @@ public class PlayerInventoryManager : MonoBehaviour
                 {
                     itemInSlot = SpawnItemInSlot(item, slot);
 
-                    if (item.type == PickUpTypes.Ingredient)
-                    {
-                        craftingManager.UpdatePizzaOvenContent(itemInSlot);
-                    }
+                    //if (item.type == PickUpTypes.Ingredient)
+                    //{
+                    //    craftingManager.UpdatePizzaOvenContent(itemInSlot);
+                    //}
 
                     hasBeenPlaced = true;
                     break;
@@ -67,13 +67,13 @@ public class PlayerInventoryManager : MonoBehaviour
                 itemInSlot.amount++;
                 itemInSlot.RefreshCount();
 
-                if (item.type == PickUpTypes.Ingredient)
-                {
-                    foreach (PizzaOvenSlot pizzaOvenSlot in craftingManager.pizzaSlots)
-                    {
-                        pizzaOvenSlot.UpdateSlot(itemInSlot);
-                    }
-                }
+                //if (item.type == PickUpTypes.Ingredient)
+                //{
+                //    foreach (PizzaOvenSlot pizzaOvenSlot in craftingManager.pizzaSlots)
+                //    {
+                //        pizzaOvenSlot.UpdateSlot(itemInSlot);
+                //    }
+                //}
 
                 addedToInventoryStack = true;
                 break;
@@ -103,18 +103,12 @@ public class PlayerInventoryManager : MonoBehaviour
         {
             if (selectedItem.TryGetComponent<InventoryItem>(out InventoryItem itemInSlot))
             {
-                itemInSlot.amount--;
-                itemInSlot.RefreshCount();
-                
-                if (pickUpItemData.type == PickUpTypes.Ingredient)
-                {
-                    UpdatePizzaSlots(itemInSlot);
-                }
+                //if (pickUpItemData.type == PickUpTypes.Ingredient)
+                //{
+                //    UpdatePizzaSlots(itemInSlot);
+                //}
 
-                if (itemInSlot.amount <= 0)
-                {
-                    Destroy(selectedItem);
-                }
+                RemoveItemFromSlot(itemInSlot);
 
                 subMenu.SetActive(false);
                 ResetVariables();
@@ -125,13 +119,40 @@ public class PlayerInventoryManager : MonoBehaviour
             return;
         }
     }
+
+    public bool RemoveItem(PickUpItemData item)
+    {
+        bool hasBeenFound = false;
+        foreach (InventorySlot slot in  inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot.itemData == item)
+            {
+                RemoveItemFromSlot(itemInSlot);
+                hasBeenFound = true;
+                break;
+            }
+        }
+
+        return hasBeenFound;
+    }
+
+    private void RemoveItemFromSlot(InventoryItem inventoryItem)
+    {
+        inventoryItem.amount--;
+        inventoryItem.RefreshCount();
+
+        if (inventoryItem.amount <= 0)
+        { Destroy(inventoryItem); }
+    }
     
     public void RemoveItemAmount(InventoryItem itemAccess, int amountToRemove)
     {
         itemAccess.amount -= amountToRemove;
         itemAccess.RefreshCount();
 
-        UpdatePizzaSlots(itemAccess);
+        //UpdatePizzaSlots(itemAccess);
 
         if (itemAccess.amount <= 0)
         {
@@ -204,17 +225,17 @@ public class PlayerInventoryManager : MonoBehaviour
         selectedItem = null;
     }
 
-    public void UpdatePizzaSlots(InventoryItem itemInSlot)
-    {
-        for (int index = 0; index < craftingManager.pizzaSlots?.Count;)
-        {
-            craftingManager.pizzaSlots?[index].UpdateSlot(itemInSlot);
+    //public void UpdatePizzaSlots(InventoryItem itemInSlot)
+    //{
+    //    for (int index = 0; index < craftingManager.pizzaSlots?.Count;)
+    //    {
+    //        craftingManager.pizzaSlots?[index].UpdateSlot(itemInSlot);
 
-            if (craftingManager.pizzaSlots[index] != null)
-            {
-                index++;
-            }
-        }
-    }
+    //        if (craftingManager.pizzaSlots[index] != null)
+    //        {
+    //            index++;
+    //        }
+    //    }
+    //}
 
 }

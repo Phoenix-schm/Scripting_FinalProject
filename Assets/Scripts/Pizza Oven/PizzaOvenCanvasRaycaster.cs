@@ -16,7 +16,7 @@ public class PizzaOvenCanvasRaycaster : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        inventoryManager = pizzaOven.playerInventoryManager;
+        //inventoryManager = pizzaOven.playerInventoryManager;
 
         canvasRaycaster = GetComponent<GraphicRaycaster>();
         eventSystem = GetComponent<EventSystem>();
@@ -27,22 +27,22 @@ public class PizzaOvenCanvasRaycaster : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                // Raycast logic
-                pointerEventData = new PointerEventData(eventSystem);
-                pointerEventData.position = Input.mousePosition;
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    // Raycast logic
+            //    pointerEventData = new PointerEventData(eventSystem);
+            //    pointerEventData.position = Input.mousePosition;
 
-                List<RaycastResult> results = new List<RaycastResult>();
-                canvasRaycaster.Raycast(pointerEventData, results);        // Raycast at pointer position, and list out the data
-                foreach(RaycastResult result in results)
-                {
-                    if (result.gameObject.TryGetComponent<PizzaOvenSlot>(out PizzaOvenSlot pizzaOvenSlot))
-                    {
-                        pizzaOvenSlot.inventoryManager = inventoryManager;
-                    }
-                }
-            }
+            //    List<RaycastResult> results = new List<RaycastResult>();
+            //    canvasRaycaster.Raycast(pointerEventData, results);        // Raycast at pointer position, and list out the data
+            //    foreach(RaycastResult result in results)
+            //    {
+            //        if (result.gameObject.TryGetComponent<PizzaOvenSlot>(out PizzaOvenSlot pizzaOvenSlot))
+            //        {
+            //            pizzaOvenSlot.inventoryManager = inventoryManager;
+            //        }
+            //    }
+            //}
         }
     }
 
